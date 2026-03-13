@@ -1,0 +1,31 @@
+body {
+    color: #999;
+}
+
+.cell { 
+    width: 100px; 
+    height: 100px; 
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.game-container { 
+    display: grid; 
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    border: 2px solid #333;
+    width: max-content; 
+}
+.goblin { 
+    max-width: 100%; 
+    height: auto; 
+}
+
+.cell:nth-child(8n+2),
+.cell:nth-child(8n+4),
+.cell:nth-child(8n+5),
+.cell:nth-child(8n+7) {
+  background-color: #e0e0e0;
+}
