@@ -3,6 +3,8 @@
 import "../css/style.css";
 import goblinImgSrc from "../img/goblin.png";
 
+let gameInterval = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   const boardSize = 4;
   const container = document.querySelector(".game-container");
@@ -31,11 +33,26 @@ document.addEventListener("DOMContentLoaded", () => {
     } while (nextIndex === currentIndex);
 
     // Просто добавляем картинку в новую ячейку — она сама исчезнет из старой
-    cells[nextIndex].appendChild(goblin);
+    cells[nextIndex].append(goblin);
     currentIndex = nextIndex;
   };
 
   // Первый запуск и интервал
+  
+  const startGame = () => {
+  // На всякий случай очищаем старый интервал, чтобы они не плодились
+  if (gameInterval) clearInterval(gameInterval);
+  
   moveGoblin();
-  setInterval(moveGoblin, 1000);
+  gameInterval = setInterval(moveGoblin, 1000);
+};
+
+// 4. Функция для ОСТАНОВКИ игры
+const stopGame = () => {
+  clearInterval(gameInterval);
+  gameInterval = null; // Обнуляем, чтобы память была чиста
+};
+
+// 5. Запуск
+startGame();
 });
